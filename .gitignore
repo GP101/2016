@@ -1,0 +1,8 @@
+*.log
+*.tlog
+*.idb
+ConsoleTetris/ConsoleTetris/Debug/vc120.pdb
+*.ilk
+ConsoleTetris/ConsoleTetris/Debug/stdafx.obj
+ConsoleTetris/ConsoleTetris.sdf
+ConsoleTetris/ConsoleTetris/Debug/ConsoleTetris.obj
