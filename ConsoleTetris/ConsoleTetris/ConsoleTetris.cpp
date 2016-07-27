@@ -36,20 +36,25 @@ struct KPoint {
 struct KBlock {
 	KPoint  m_aBlockPosition[MAX_BLOCK_SIZE];
 	int     m_iNumBlock;
+
+	void DrawBlockOnBoard(/*const KBlock* this_,*/ int xBoard_, int yBoard_) {
+		for (int iBlock = 0; iBlock < this->m_iNumBlock; ++iBlock) {
+			// transform local coordinate to global coordinate
+			const int xGlobal = this->m_aBlockPosition[iBlock].x + xBoard_;
+			const int yGlobal = this->m_aBlockPosition[iBlock].y + yBoard_;
+			// draw a block on the board
+            if (yGlobal >= 0 && yGlobal < BOARD_SIZE_ROW
+                && xGlobal >= 0 && yGlobal < BOARD_SIZE_COL) {
+                g_aBoard[yGlobal][xGlobal] = '#';
+            }//if
+		}//for
+	}//DrawBlockOnBoard()
 };//struct KBlock
 
-void DrawBlockOnBoard(const KBlock* this_, int xBoard_, int yBoard_) {
-	for (int iBlock = 0; iBlock < this_->m_iNumBlock; ++iBlock) {
-		// transform local coordinate to global coordinate
-		const int xGlobal = this_->m_aBlockPosition[iBlock].x + xBoard_;
-		const int yGlobal = this_->m_aBlockPosition[iBlock].y + yBoard_;
-		// draw a block on the board
-		g_aBoard[yGlobal][xGlobal] = '#';
-	}//for
-}//DrawBlockOnBoard()
-
-KPoint      g_currentBlockPos = { 0, 0 };
+KPoint      g_currentBlockPos = { 2, 2 };
 KBlock      g_curBlock;
+float		g_fCurBlockTimer = 0.f;
+float		g_fCurBlockSpeed = 0.5f; // seconds per a block
 
 // x is the column, y is the row. The origin (0,0) is top-left.
 void SetCursorPosition(int x, int y) {
@@ -121,13 +126,21 @@ void OnUpdate(float fElapsedTime_) {
 		}//if.. else if..
 	}//if
 
-	// clear game world(board)
-	::memset((char*)g_aBoard, 0, BOARD_SIZE_ROW * BOARD_SIZE_COL);
-	// draw game object
-	DrawBlockOnBoard(IN &g_curBlock, g_currentBlockPos.x, g_currentBlockPos.y);
+	g_fCurBlockTimer += fElapsedTime_;
+    if (g_fCurBlockTimer >= g_fCurBlockSpeed) {
+        g_fCurBlockTimer -= g_fCurBlockSpeed; // reset current block timer
+        g_currentBlockPos.y += 1;
+    }//if
 }//OnUpdate()
 
 void OnDraw(float fElapsedTime_) {
+    // clear game world(board)
+    ::memset((char*)g_aBoard, 0, BOARD_SIZE_ROW * BOARD_SIZE_COL);
+
+    // draw game object
+    //DrawBlockOnBoard(IN &g_curBlock, g_currentBlockPos.x, g_currentBlockPos.y);
+    g_curBlock.DrawBlockOnBoard(g_currentBlockPos.x, g_currentBlockPos.y);
+
 	DrawBoard();
 }//OnDraw()
 
