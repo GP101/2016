@@ -46,7 +46,7 @@ bool IsValidBoardPos(const KPoint worldPos_) {
 }//IsValidBoardPos()
 
 /// @brief  get cell value of the given World point from the 'g_aCurBoard[]'
-bool GetBoardCellValue(OUT char* pCellValue_, const KPoint worldPos_) {
+bool GetBoardCellValue( OUT char* pCellValue_, const KPoint worldPos_) {
     if (IsValidBoardPos(worldPos_) == true) {
         // set [out] parameter
         *pCellValue_ = g_aCurBoard[worldPos_.y][worldPos_.x];
@@ -54,6 +54,44 @@ bool GetBoardCellValue(OUT char* pCellValue_, const KPoint worldPos_) {
     }//if
     return false;
 }//GetBoardCellValue()
+
+bool IsRowRemovableOnBoard(int iRow_) {
+    int iCellCount = 0;
+    for (int iCol = 0; iCol < BOARD_SIZE_COL; ++iCol) {
+        char cellValue = 0;
+        KPoint point;
+        point.x = iCol;
+        point.y = iRow_;
+        const bool bIsCellValue = GetBoardCellValue( OUT &cellValue, point );
+        if (bIsCellValue == false) {
+            return false;
+        }
+        if (cellValue != 0)
+            iCellCount += 1;
+    }//for
+    return iCellCount == BOARD_SIZE_COL;
+}//IsRowRemovableOnBoard()
+
+bool GetRemovableRowFromBoard(int* piNumOfRows_, int aRows_[]) {
+    int iNumOfRows = 0;
+    for (int iRow = 0; iRow < BOARD_SIZE_ROW; ++iRow) {
+        if (IsRowRemovableOnBoard(iRow) == true) {
+            aRows_[iNumOfRows] = iRow;
+            iNumOfRows += 1;
+        }//if
+    }//for
+
+    if (iNumOfRows >= 1) {
+        *piNumOfRows_ = iNumOfRows;
+        return true;
+    }//if
+
+    return false;
+}//GetRemovableRowFromBoard()
+
+void RemoveRowFromBoard(int iNumOfRows, int aRemoveRows[]) {
+    printf("Removable Rows are %i\r\n", iNumOfRows);
+}//RemoveRowFromBoard()
 
 /// @brief  represent a block in the Tetris game.
 /// @desc   A block is consisted of several stones.
@@ -72,7 +110,7 @@ struct KBlock {
 
     /// @brief  draw a block on the give board
     /// @param  aBoard : [in,out] destination block
-    void DrawBlockOnBoard(BOARD_CELL_TYPE aBoard[BOARD_SIZE_ROW][BOARD_SIZE_COL]) {
+    void DrawBlockOnBoard( BOARD_CELL_TYPE aBoard[BOARD_SIZE_ROW][BOARD_SIZE_COL] ) {
         for (int iStone = 0; iStone < m_iNumStone; ++iStone) {
             // transform local coordinate to global coordinate
             KPoint worldPos = GetPos(iStone);
@@ -89,7 +127,7 @@ struct KBlock {
         for (int iStone = 0; iStone < m_iNumStone; ++iStone) {
             KPoint worldPos = GetPos(iStone);
             char cellValue = 0;
-            const bool bIsGetValue = GetBoardCellValue(OUT &cellValue, worldPos);
+            const bool bIsGetValue = GetBoardCellValue( OUT &cellValue, worldPos );
             if (bIsGetValue == false || cellValue != 0)
                 return false;
         }//for
@@ -108,7 +146,7 @@ void SetCursorPosition(int x, int y) {
 }//SetCursorPosition()
 
 /// @brief  draw g_aBoard into the console Window.
-void DrawBoard(BOARD_CELL_TYPE aBoard[BOARD_SIZE_ROW][BOARD_SIZE_COL]) {
+void DrawBoard( BOARD_CELL_TYPE aBoard[BOARD_SIZE_ROW][BOARD_SIZE_COL] ) {
     for (int y = 0; y < BOARD_SIZE_ROW; ++y) {
         for (int x = 0; x < BOARD_SIZE_COL; ++x) {
             SetCursorPosition(x, y);
@@ -160,7 +198,7 @@ void Finalize() {
 void OnUpdate(float fElapsedTime_) {
     // save current block state.
     KBlock savedCurBlock;
-    memcpy(&savedCurBlock, &g_curBlock, sizeof(KBlock));
+    memcpy( &savedCurBlock, &g_curBlock, sizeof(KBlock));
 
     // process user keyboard inputs
     int ch = 0;
@@ -198,6 +236,12 @@ void OnUpdate(float fElapsedTime_) {
             g_curBlock.DrawBlockOnBoard(g_aCurBoard);
 
             // check whether removing a row is possible or not.
+            int iNumOfRows = 0;
+            int aRemoveRows[BOARD_SIZE_ROW];
+            bool bIsRemovableRow = GetRemovableRowFromBoard(OUT &iNumOfRows, aRemoveRows);
+            if (bIsRemovableRow == true) {
+                RemoveRowFromBoard(iNumOfRows, aRemoveRows);
+            }//if
 
             // test regenerate a Block.
             g_curBlock.m_worldPos.y = 2;
@@ -209,9 +253,9 @@ void OnDraw(float fElapsedTime_) {
     // prepare working Board with current(previous frame) board data.
     memcpy(g_aBoard, g_aCurBoard, sizeof(g_aBoard));
 
-    g_curBlock.DrawBlockOnBoard(g_aBoard);
+    g_curBlock.DrawBlockOnBoard( g_aBoard );
 
-    DrawBoard(g_aBoard);
+    DrawBoard( g_aBoard );
 }//OnDraw()
 
 void main() {
