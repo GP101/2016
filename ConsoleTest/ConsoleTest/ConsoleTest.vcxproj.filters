@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="RefereceFiles">
+      <UniqueIdentifier>{3a7ed923-3850-4b51-862e-e0a0baa5a5a1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -31,6 +34,15 @@
     </ClCompile>
     <ClCompile Include="ConsoleTest.cpp">
       <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleTest_pointer_step01.cpp">
+      <Filter>RefereceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleTest_pointer_step02_struct.cpp">
+      <Filter>RefereceFiles</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleTest_pointer_step03_functionPointer.cpp">
+      <Filter>RefereceFiles</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
