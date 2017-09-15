@@ -1,4 +1,5 @@
 #pragma once
+#define _WINSOCKAPI_
 #include <windows.h>
 #include <cassert>
 #include <stdio.h>
@@ -90,6 +91,10 @@
 #define VIRTUAL
 #endif
 
+#ifndef STATIC
+#define STATIC
+#endif
+
 // compile time assertion
 // CASSERT( sizeof( int ) == 4 );
 #ifndef CASSERT
@@ -102,14 +107,18 @@
 #define __WFUNCTION__   TOWIDESTRING(__FUNCTION__)
 
 #define BEGIN_LOG( tag, header ) \
-    std::wcout << L#tag << L" : " << __WFUNCTION__ << L"(): " \
+    std::wcout << L#tag \
+    << L" " \
+    << (LPCTSTR)CTime::GetCurrentTime( ).Format( _T( "%Y-%m-%d %H:%M:%S" ) ) \
+    << L" : " << __WFUNCTION__ << L"(): " \
     << header << std::endl
-    //<< (LPCTSTR) CTime::GetCurrentTime().Format( L( "%Y-%m-%d %H:%M:%S" ) ) << L", " \
 
 #define LOG_NAMEVALUE( name ) \
     L#name << L" : " << name << std::endl
 
-template <typename F>
+#define END_LOG         std::endl;
+
+template<typename F>
 struct ScopeExit
 {
     ScopeExit( F f ) : f( f ) {}
@@ -117,7 +126,7 @@ struct ScopeExit
     explicit operator bool() { return true; }
     F f;
 };
-template <typename F>
+template<typename F>
 ScopeExit<F> MakeScopeExit( F f )
 {
     return ScopeExit<F>( f );

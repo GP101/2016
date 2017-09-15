@@ -8,17 +8,17 @@ struct KCriticalSection : public CRITICAL_SECTION
     DESTRUCTOR          ~KCriticalSection( ) { DeleteCriticalSection( this ); }
 };
 
-class KCriticalSectionRaii
+class KCriticalSectionLock
 {
 public:
-    CONSTRUCTOR         KCriticalSectionRaii( CRITICAL_SECTION& cs ) : m_pcs( &cs )
+    CONSTRUCTOR         KCriticalSectionLock( CRITICAL_SECTION& cs ) : m_pcs( &cs )
                         {
                             //printf( "constructor\r\n" );
                             BOOST_ASSERT( m_pcs != nullptr );
                             EnterCriticalSection( m_pcs );
                         }
 
-    DESTRUCTOR          ~KCriticalSectionRaii( )
+    DESTRUCTOR          ~KCriticalSectionLock( )
                         {
                             //printf( "destructor\r\n" );
                             if( m_pcs != nullptr )
@@ -29,7 +29,7 @@ protected:
     CRITICAL_SECTION*   m_pcs;
 };
 
-#define CSLOCK( cs_ )   if( KCriticalSectionRaii CONCATENATE( lock_, __LINE__ ) = cs_ )
+#define CSLOCK( cs_ )   if( KCriticalSectionLock CONCATENATE( lock_, __LINE__ ) = cs_ )
 
 /** @exam   KCriticalSection
 #include <iostream>

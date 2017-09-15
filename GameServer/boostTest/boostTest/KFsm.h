@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <boost/shared_ptr.hpp>
 #include <map>
+#include "KCriticalSection.h"
+
 
 class KFsmState;
 typedef boost::shared_ptr<KFsmState>    KFsmStatePtr;
@@ -14,7 +16,7 @@ typedef boost::shared_ptr<KFsmState>    KFsmStatePtr;
 class KFsmState
 {
 public:
-    const static int  INVALID_STATE = -1;
+    const static int    INVALID_STATE = -1;
 
                         KFsmState(int iStateId_)
                             : m_iStateId( iStateId_ )
@@ -63,6 +65,10 @@ private:
                         m_vecTransition; // first: input, second: destination state
 };//class KFsmState
 
+
+class KFsm;
+typedef boost::shared_ptr<KFsm>     KFsmPtr;
+
 class KFsm
 {
     std::map<int, KFsmStatePtr>
@@ -70,18 +76,18 @@ class KFsm
     int                 m_iCurrentStateId;
 
 public:
-                        KFsm(int iStateID)
+    CONSTRUCTOR         KFsm( int iStateID )
                         {
                             m_iCurrentStateId = iStateID;
                         }
-                        ~KFsm(){}
+    DESTRUCTOR          ~KFsm(){}
 
     int                 GetCurrentStateId() const { return m_iCurrentStateId; }
-    void                SetCurrentStateId(int iStateID) { m_iCurrentStateId = iStateID; }
+    void                SetCurrentStateId( int iStateId_ ) { m_iCurrentStateId = iStateId_; }
 
     KFsmStatePtr        GetCurrentState() const
                         {
-                            return GetState(m_iCurrentStateId);
+                            return GetState( m_iCurrentStateId );
                         }
 
     /// @brief  get state by Id.
@@ -120,37 +126,132 @@ public:
                             m_iCurrentStateId = spCurrentState->GetDestState(iInput_);
                             return m_iCurrentStateId;
                         }//DoTransition()
+    virtual std::wstring
+                        GetStateIdString( int iStateId_ ) const = 0;
+    virtual std::wstring
+                        GetInputIdString( int iInputId_ ) const = 0;
 };//class KFsm
 
 /** @example class KFsm
 
-    int main()
-    {
-        KFsmState       state1(0);
-        KFsmState       state2(1);
-        KFsm            stateMachine(0);
+            int main()
+            {
+            KFsmState       state1(0);
+            KFsmState       state2(1);
+            KFsm            stateMachine(0);
 
-        state1.AddTransition(10, 1);
-        state1.AddTransition(20, 2);
-        stateMachine.AddState(state1);
+            state1.AddTransition(10, 1);
+            state1.AddTransition(20, 2);
+            stateMachine.AddState(state1);
 
-        state2.AddTransition(30, 0);
-        stateMachine.AddState(state2);
+            state2.AddTransition(30, 0);
+            stateMachine.AddState(state2);
 
-        KFsmStatePtr spCurrentState = stateMachine.GetCurrentState();
-        printf("state %i\r\n", spCurrentState->GetStateId());
-        stateMachine.DoTransition(10);
-        spCurrentState = stateMachine.GetCurrentState();
-        printf("state %i\r\n", spCurrentState->GetStateId());
-        stateMachine.DoTransition(30);
-        stateMachine.DoTransition(20);
-        spCurrentState = stateMachine.GetCurrentState();
+            KFsmStatePtr spCurrentState = stateMachine.GetCurrentState();
+            printf("state %i\r\n", spCurrentState->GetStateId());
+            stateMachine.DoTransition(10);
+            spCurrentState = stateMachine.GetCurrentState();
+            printf("state %i\r\n", spCurrentState->GetStateId());
+            stateMachine.DoTransition(30);
+            stateMachine.DoTransition(20);
+            spCurrentState = stateMachine.GetCurrentState();
 
-        if (spCurrentState != nullptr)
-        {
+            if (spCurrentState != nullptr)
+            {
             const bool isState = spCurrentState->CheckState(2, 0, 1);
             printf("isState %i\r\n", isState);
-        }//if
-    }//main()
+            }//if
+            }//main()
 
-*/
+            */
+
+class KFsmBase
+{
+public:
+    void                SetFSM( KFsmPtr& spFSM )
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            m_spFSM = spFSM;
+                            m_pkCurrentState = m_spFSM->GetState( 1 );
+                        }
+    KFsmPtr             GetFSM()
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            return m_spFSM;
+                        }
+    std::wstring        GetStateIdString() const
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            return m_spFSM->GetStateIdString( m_pkCurrentState->GetStateId() );
+                        }
+    int                 GetStateId() const
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            return m_pkCurrentState->GetStateId();
+                        }
+    void                StateTransition( int nInput )
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            m_pkCurrentState = m_spFSM->GetState( m_pkCurrentState->GetDestState( nInput ) );
+                        }
+    void                ForceStateTransitionTo( int nStateId )
+                        {
+                            KCriticalSectionLock lock( m_csFsm );
+                            m_pkCurrentState = m_spFSM->GetState( nStateId );
+                        }
+
+protected:
+    mutable KCriticalSection
+                        m_csFsm;
+    KFsmStatePtr        m_pkCurrentState;
+    KFsmPtr             m_spFSM;
+};
+
+#define DeclareFSM  \
+    public: \
+        void SetFSM( KFsmPtr& spFSM ) \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            m_spFSM = spFSM; \
+            m_pkCurrentState = m_spFSM->GetState( 1 ); \
+        } \
+        KFsmPtr GetFSM() \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            return m_spFSM; \
+        } \
+        std::wstring GetStateIdString() const \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            return m_spFSM->GetStateIdString( m_pkCurrentState->GetStateId() ); \
+        } \
+        int GetStateId() \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            return m_pkCurrentState->GetStateId(); \
+        } \
+        void StateTransition( int nInput ) \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            m_pkCurrentState = m_spFSM->GetState( m_pkCurrentState->GetDestState( nInput ) ); \
+        } \
+        void ForceStateTransitionTo( int nStateId ) \
+        { \
+            KCriticalSectionLock lock( m_cs ); \
+            m_pkCurrentState = m_spFSM->GetState( nStateId ); \
+        } \
+protected: \
+    mutable KCriticalSection      m_cs;   \
+    KFsmStatePtr        m_pkCurrentState;   \
+    KFsmPtr             m_spFSM
+
+
+#define VERIFY_STATE( varg ) \
+    if( !m_pkCurrentState->CheckState varg ) \
+    { \
+        BEGIN_LOG( cerr, L"error" ) \
+        << LOG_NAMEVALUE( m_wstrName ) \
+        << L"    Current State : " << GetStateIdString() << std::endl \
+        << L"    Valid State : "L ## #varg << std::endl; \
+        return; \
+    }
