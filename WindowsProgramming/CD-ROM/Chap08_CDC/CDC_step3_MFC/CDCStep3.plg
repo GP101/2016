@@ -1,0 +1,40 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: CDCStep3 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPA.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /FR"Debug/" /Fp"Debug/CDCStep3.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /c 
+"C:\[My Projects]\_만화가있는MFC\step1_CDC\CDC_step3_MFC\CDCStep3View.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPA.tmp" 
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/CDCStep3.pdb" /debug /machine:I386 /out:"Debug/CDCStep3.exe" /pdbtype:sept 
+".\Debug\CDCStep3.obj"
+".\Debug\CDCStep3Doc.obj"
+".\Debug\CDCStep3View.obj"
+".\Debug\MainFrm.obj"
+".\Debug\StdAfx.obj"
+".\Debug\CDCStep3.res"
+]
+Creating command line "link.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSPB.tmp"
+<h3>Output Window</h3>
+Compiling...
+CDCStep3View.cpp
+Linking...
+Creating command line "bscmake.exe /nologo /o"Debug/CDCStep3.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\CDCStep3.sbr" ".\Debug\CDCStep3Doc.sbr" ".\Debug\CDCStep3View.sbr" ".\Debug\MainFrm.sbr""
+Creating browse info file...
+<h3>Output Window</h3>
+
+
+
+<h3>Results</h3>
+CDCStep3.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

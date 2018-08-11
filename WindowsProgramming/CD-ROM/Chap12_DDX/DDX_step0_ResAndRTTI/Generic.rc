@@ -1,0 +1,14 @@
+#include "resource.h"
+
+GENERIC                 ICON    DISCARDABLE     "generic.ico"
+
+GENERIC MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Do it",                      IDM_DOIT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+END
+

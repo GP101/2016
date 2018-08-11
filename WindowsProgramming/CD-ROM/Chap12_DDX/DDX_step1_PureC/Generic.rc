@@ -1,0 +1,26 @@
+#include <windows.h>
+#include "resource.h"
+
+About1 	    ICON    "about1.ico"
+GENERIC     ICON    "generic.ico"
+
+GENERIC MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Do it",                      IDM_DOIT
+        MENUITEM SEPARATOR
+        MENUITEM "E&xit",                       IDM_EXIT
+    END
+END
+
+AboutBox DIALOG  20, 20, 160, 80
+STYLE WS_POPUP | WS_DLGFRAME
+{
+     CTEXT "About1"                      -1,   0, 12, 160,  8
+     ICON  "About1"                      -1,   8,  8,   0,  0
+     CTEXT "About Box Demo Program"      -1,   0, 36, 160,  8
+     CTEXT "(c) 2000 KOG Studios"       -1,   0, 48, 160,  8
+     DEFPUSHBUTTON "OK"                IDOK,      64, 60, 32, 14, WS_GROUP
+     EDITTEXT                          IDC_EDIT1,102, 14, 40, 14, ES_AUTOHSCROLL
+} 
