@@ -1,0 +1,8 @@
+syntax: glob
+ConsoleFFT/Debug/*
+*.sdf
+*.suo
+Debug/*
+ipch/*
+VisualFFT/Release/*
+Release/*
