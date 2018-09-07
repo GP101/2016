@@ -64,3 +64,10 @@ void KVectorUtil::DrawGrid( HDC hdc, int numHorizontalGrid, int numVerticalGrid,
         vbegin += 1;
     }
 }
+
+KVector2 KVectorUtil::GetScreenPoint( const KVector2& v0_ )
+{
+    KVector2 v0 = g_basis2.Transform( v0_ );
+    v0 = g_screenCoordinate.Transform( v0 );
+    return v0;
+}
