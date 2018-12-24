@@ -117,3 +117,18 @@ https://www.youtube.com/playlist?list=PLrrTotxaO6khn83BjtBN-1HMDc9MZ__yt
   - RAII의 의미, STRING_CAT의 구현
   - SCOPE_EXIT의 구현
   - PRE_BLOCK의 구현
+
+# FFT(Fast Fourier Transform)(빠른 푸리에 변환)
+Video tutorial on youtube:
+https://www.youtube.com/playlist?list=PLrrTotxaO6kh0sXwkNHzybqTGw88KFrrr
+
+### FFT(Fast Fourier Transform)
+  - Course Introduction(코스 소개)
+  - Numerical Differentiation(수치 미분)
+  - Euler Constant(오일러 상수)
+  - Sigmoid Function(시그모이드 함수)
+  - Taylor Series(테일러 시리즈)
+  - Euler's Formula(오일러의 공식)
+  - Euler's Formula and Quaternion(오일러의 공식과 사원수)
+  - Fourier Transform Theory(푸리에 변환 이론)
+  - Discrete Fourier Transform(이산 푸리에 변환)
