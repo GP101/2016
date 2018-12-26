@@ -132,3 +132,6 @@ https://www.youtube.com/playlist?list=PLrrTotxaO6kh0sXwkNHzybqTGw88KFrrr
   - Euler's Formula and Quaternion(오일러의 공식과 사원수)
   - Fourier Transform Theory(푸리에 변환 이론)
   - Discrete Fourier Transform(이산 푸리에 변환)
+
+# Neural Network
+(will be coverd on 2019)
