@@ -179,5 +179,11 @@
     <ClCompile Include="VisualStudio2017Console 2d boardgame02 keyinput.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame03 console color.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame04 hit N.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
