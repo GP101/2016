@@ -62,5 +62,122 @@
     <ClCompile Include="VisualStudio2017Console SFINAE step02.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console structure01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console structure02.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console structure03.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console switch.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1_05_CRTP_ObjectCounter.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1_05_CRTP_StaticPolymorphism.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="1_05_CRTP01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_01_for_statement.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_02_FOREACH_prepare.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_03_FOREACH_prepare2.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_04_FOREACH.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplicationVs2017_equality equivalence.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplicationVs2017_vector binary search and time complexity.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d array.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d basic movement.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d char array - draw board.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d char array.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console alloc free pointer to pointer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console alloc free.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console class01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console class02.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console class03.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console Day10 conversion operator.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console key input.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console mystrcpy.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console new delete.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer01 basic.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer02 malloc pointer of pointer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer03 pointer array.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer04 structure relative address.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer05 this pointer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer06 pointer to member.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer07 function pointer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer08 pointer to integer block.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer09 pointer to member function.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer10 pointer to vtable.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console pointer11 smart pointer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame02 keyinput.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

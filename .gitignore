@@ -7,3 +7,6 @@ ConsoleTetris/ConsoleTetris/Debug/stdafx.obj
 ConsoleTetris/ConsoleTetris.sdf
 ConsoleTetris/ConsoleTetris/Debug/ConsoleTetris.obj
 *.suo
+/VisualStudio2017Console/.vs
+/VisualStudio2017Console/x64
+/VisualStudio2017Console/VisualStudio2017Console/x64
