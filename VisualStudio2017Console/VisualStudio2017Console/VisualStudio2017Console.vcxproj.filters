@@ -197,5 +197,11 @@
     <ClCompile Include="VisualStudio2017Console 2d boardgame08 sokoban01.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame09 structure.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console 2d boardgame10 SetPos.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
