@@ -203,5 +203,11 @@
     <ClCompile Include="VisualStudio2017Console 2d boardgame10 SetPos.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console async.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console future.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
