@@ -209,5 +209,17 @@
     <ClCompile Include="VisualStudio2017Console future.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console user defined literal.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console binary literal.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console complex number01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console conditional variable.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
