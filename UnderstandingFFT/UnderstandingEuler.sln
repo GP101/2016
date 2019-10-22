@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "02 Euler Constant", "02 Euler Constant\02 Euler Constant.vcxproj", "{1284135E-3A9E-4431-9B5C-5BF42320B90B}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LinearAlgebra Step05 Matrix2 Multiplication", "LinearAlgebra_Step05 Matrix2 Multiplication\LinearAlgebra Step05 Matrix2 Multiplication.vcxproj", "{EF22908A-F6C1-41ED-B60B-E8AF156AD35B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Quaternions_Step02", "Quaternions_Step02\Quaternions_Step02.vcxproj", "{3ACA7646-E4AC-4B11-8FD3-05FD7AB28885}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "05 Eulers Formula Cpp14", "05 Eulers Formula Cpp14\05 Eulers Formula Cpp14.vcxproj", "{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,8 +93,19 @@ Global
 		{3ACA7646-E4AC-4B11-8FD3-05FD7AB28885}.Release|Win32.Build.0 = Release|Win32
 		{3ACA7646-E4AC-4B11-8FD3-05FD7AB28885}.Release|x64.ActiveCfg = Release|x64
 		{3ACA7646-E4AC-4B11-8FD3-05FD7AB28885}.Release|x64.Build.0 = Release|x64
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Debug|Win32.Build.0 = Debug|Win32
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Debug|x64.ActiveCfg = Debug|x64
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Debug|x64.Build.0 = Debug|x64
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Release|Win32.ActiveCfg = Release|Win32
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Release|Win32.Build.0 = Release|Win32
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Release|x64.ActiveCfg = Release|x64
+		{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D385BE65-01F9-4628-AF93-A77398C48660}
 	EndGlobalSection
 EndGlobal

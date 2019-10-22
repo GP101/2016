@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{8C3EA8C1-95F4-4CAF-A85E-F7F62DD30F95}</ProjectGuid>
+    <ProjectGuid>{24BD8E96-58AD-44C8-8296-3CF5B953DFD7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>LinearAlgebra</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="KBasis2.h" />
+    <ClInclude Include="KMatrix2.h" />
     <ClInclude Include="KScreenCoordinate.h" />
     <ClInclude Include="KVector2.h" />
     <ClInclude Include="KVectorUtil.h" />
@@ -153,6 +154,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="KMatrix2.cpp" />
     <ClCompile Include="KVector2.cpp" />
     <ClCompile Include="KVectorUtil.cpp" />
     <ClCompile Include="LinearAlgebra.cpp" />
