@@ -18,11 +18,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="VisualStudio2017Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -219,6 +214,15 @@
       <Filter>Reference Files</Filter>
     </ClCompile>
     <ClCompile Include="VisualStudio2017Console conditional variable.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console custom initializer_list.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console list initialization.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console special function default delete.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
   </ItemGroup>
