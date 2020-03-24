@@ -6,7 +6,7 @@
 template <typename F>
 struct ScopeExit
 {
-    ScopeExit( F f ) : f( f ) {}
+    ScopeExit(F f) : f(f) {}
     ~ScopeExit() { f(); }
     operator bool()
     {
@@ -16,29 +16,30 @@ struct ScopeExit
     F f;
 };
 template <typename F>
-ScopeExit<F> MakeScopeExit( F f )
+ScopeExit<F> MakeScopeExit(F f)
 {
-    return ScopeExit<F>( f );
+    return ScopeExit<F>(f);
 };
 
 #define SCOPE_EXIT( code )      auto STRING_CAT( scope_exit_, __LINE__ ) = MakeScopeExit( [=]() { code; } )
 #define PREBLOCK( code )        if( SCOPE_EXIT( code ) )
 
 int g_value = 1;
+unsigned int g_valueStamp = 0;
 
-int Test( int value )
+int Test(int value)
 {
-    PREBLOCK( g_value = 1; printf( "exit if\r\n" ); )
+    PREBLOCK(g_valueStamp += 1; printf("exit if\r\n"); )
     {
-        printf( "inside if\r\n" );
+        printf("inside if\r\n");
+        g_value += 1;
     }
 
-    printf( "inside test\r\n" );
-    if( value == 0 )
+    printf("inside test\r\n");
+    if (value == 0)
         return 0;
-    else if( value == 1 )
+    else if (value == 1)
     {
-        g_value = 2;
         return 2;
     }
 
@@ -47,8 +48,8 @@ int Test( int value )
 
 void main()
 {
-    printf( "before test call\r\n" );
-    Test( 1 );
+    printf("before test call\r\n");
+    Test(1);
 
-    printf( "after test call, %i\r\n", g_value );
+    printf("after test call, %i\r\n", g_value);
 }
