@@ -156,6 +156,57 @@
     <ClCompile Include="CppOcw_RAII03 PREBLOCK.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="CppOcw_constructor01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_constructor02 operator new.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_constructor03 explicit.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_constructor04 copy constructor.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_constructor04 copy constructor2.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_constructor05 RVO.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_operatoroverloading01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_operatoroverloading02 ostream.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_operatoroverloading03 operator new.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_lambda06_unsafe capture.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_lambda07_std_function.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step02 mutex.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step03 lock_guard.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step04 raise a sync issue.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step05 condition variable.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step06 thread_local.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">

@@ -246,5 +246,11 @@
     <ClCompile Include="VisualStudio2017Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VisualStudio2017Console OpenMp HelloWorld.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console OpenMp Matrix Multiplication.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
