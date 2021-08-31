@@ -253,4 +253,9 @@
       <Filter>Reference Files</Filter>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="jacobi_pd.hpp">
+      <Filter>Reference Files</Filter>
+    </ClInclude>
+  </ItemGroup>
 </Project>

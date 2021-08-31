@@ -1,182 +1,153 @@
-// Win32Test.cpp : 응용 프로그램에 대한 진입점을 정의합니다.
-//
-
 #include "stdafx.h"
-#include "Win32Test.h"
+#include <windows.h>
+#include <cmath>
 
-#define MAX_LOADSTRING 100
+POINT g_center;
+int g_pixelPerUnit = 10;
 
-// 전역 변수:
-HINSTANCE hInst;								// 현재 인스턴스입니다.
-TCHAR szTitle[MAX_LOADSTRING];					// 제목 표시줄 텍스트입니다.
-TCHAR szWindowClass[MAX_LOADSTRING];			// 기본 창 클래스 이름입니다.
+LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam,
+    LPARAM lParam);
+void OnPaint(HDC hdc);
+void DrawFunction(HDC hdc, double(*MyFunction)(double x)
+    , double begin, double end, COLORREF c, double step);
+    void OnSize(HWND hwnd);
+void Transform(double* x, double* y);
+void DrawLine(HDC hdc, double x1, double y1, double x2, double y2, COLORREF c);
 
-// 이 코드 모듈에 들어 있는 함수의 정방향 선언입니다.
-ATOM				MyRegisterClass(HINSTANCE hInstance);
-BOOL				InitInstance(HINSTANCE, int);
-LRESULT CALLBACK	WndProc(HWND, UINT, WPARAM, LPARAM);
-INT_PTR CALLBACK	About(HWND, UINT, WPARAM, LPARAM);
-
-int APIENTRY _tWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPTSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
+    PSTR szCmdLine, int iCmdShow)
 {
-	UNREFERENCED_PARAMETER(hPrevInstance);
-	UNREFERENCED_PARAMETER(lpCmdLine);
+    static WCHAR szAppName[] = L"HelloWin";
+    HWND        hwnd;
+    WNDCLASSEX  wndclass;
 
- 	// TODO: 여기에 코드를 입력합니다.
-	MSG msg;
-	HACCEL hAccelTable;
+    wndclass.cbSize = sizeof(wndclass);
+    wndclass.style = CS_HREDRAW | CS_VREDRAW;
+    wndclass.lpfnWndProc = WndProc;
+    wndclass.cbClsExtra = 0;
+    wndclass.cbWndExtra = 0;
+    wndclass.hInstance = hInstance;
+    wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
+    wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
+    wndclass.hbrBackground = (HBRUSH)GetStockObject(WHITE_BRUSH);
+    wndclass.lpszMenuName = NULL;
+    wndclass.lpszClassName = szAppName;
+    wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-	// 전역 문자열을 초기화합니다.
-	LoadString(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
-	LoadString(hInstance, IDC_WIN32TEST, szWindowClass, MAX_LOADSTRING);
-	MyRegisterClass(hInstance);
+    RegisterClassEx(&wndclass);
 
-	// 응용 프로그램 초기화를 수행합니다.
-	if (!InitInstance (hInstance, nCmdShow))
-	{
-		return FALSE;
-	}
+    hwnd = CreateWindow(szAppName,     // window class name
+        L"The Hello Program",            // window caption
+        WS_OVERLAPPEDWINDOW,            // window style
+        CW_USEDEFAULT,                  // initial x position
+        CW_USEDEFAULT,                  // initial y position
+        CW_USEDEFAULT,                  // initial x size
+        CW_USEDEFAULT,                  // initial y size
+        NULL,                           // parent window handle
+        NULL,                           // window menu handle
+        hInstance,                      // program instance handle
+        NULL);                          // creation parameters
 
-	hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WIN32TEST));
+    OnSize(hwnd);
+    ShowWindow(hwnd, iCmdShow); // (1)
 
-	// 기본 메시지 루프입니다.
-	while (GetMessage(&msg, NULL, 0, 0))
-	{
-		if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-		{
-			TranslateMessage(&msg);
-			DispatchMessage(&msg);
-		}
-	}
+    MSG         msg;
+    while (GetMessage(&msg, NULL, 0, 0))
+    {
+        DispatchMessage(&msg);
+    }//while
 
-	return (int) msg.wParam;
+    return 0;
+}//WinMain()
+
+LRESULT CALLBACK WndProc(HWND hwnd, UINT iMsg, WPARAM wParam,
+    LPARAM lParam) // (1)
+{
+    switch (iMsg)
+    {
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        return 0;
+    case WM_PAINT:
+    {
+        PAINTSTRUCT ps;
+        HDC hdc = BeginPaint(hwnd, &ps);
+        OnPaint(hdc);
+        EndPaint(hwnd, &ps);
+    }
+    case WM_SIZE:
+        OnSize(hwnd);
+    }
+    return DefWindowProc(hwnd, iMsg, wParam, lParam); // (2)
 }
 
-
-
-//
-//  함수: MyRegisterClass()
-//
-//  목적: 창 클래스를 등록합니다.
-//
-ATOM MyRegisterClass(HINSTANCE hInstance)
+double Square(double x)
 {
-	WNDCLASSEX wcex;
-
-	wcex.cbSize = sizeof(WNDCLASSEX);
-
-	wcex.style			= CS_HREDRAW | CS_VREDRAW;
-	wcex.lpfnWndProc	= WndProc;
-	wcex.cbClsExtra		= 0;
-	wcex.cbWndExtra		= 0;
-	wcex.hInstance		= hInstance;
-	wcex.hIcon			= LoadIcon(hInstance, MAKEINTRESOURCE(IDI_WIN32TEST));
-	wcex.hCursor		= LoadCursor(NULL, IDC_ARROW);
-	wcex.hbrBackground	= (HBRUSH)(COLOR_WINDOW+1);
-	wcex.lpszMenuName	= MAKEINTRESOURCE(IDC_WIN32TEST);
-	wcex.lpszClassName	= szWindowClass;
-	wcex.hIconSm		= LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
-
-	return RegisterClassEx(&wcex);
+    return x * x;
 }
 
-//
-//   함수: InitInstance(HINSTANCE, int)
-//
-//   목적: 인스턴스 핸들을 저장하고 주 창을 만듭니다.
-//
-//   설명:
-//
-//        이 함수를 통해 인스턴스 핸들을 전역 변수에 저장하고
-//        주 프로그램 창을 만든 다음 표시합니다.
-//
-BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
+double SqureRoot(double x)
 {
-   HWND hWnd;
-
-   hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
-
-   hWnd = CreateWindow(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, NULL, NULL, hInstance, NULL);
-
-   if (!hWnd)
-   {
-      return FALSE;
-   }
-
-   ShowWindow(hWnd, nCmdShow);
-   UpdateWindow(hWnd);
-
-   return TRUE;
+    //return std::sqrt(x);
+    return std::pow(x, 1/2.0);
 }
 
-//
-//  함수: WndProc(HWND, UINT, WPARAM, LPARAM)
-//
-//  목적:  주 창의 메시지를 처리합니다.
-//
-//  WM_COMMAND	- 응용 프로그램 메뉴를 처리합니다.
-//  WM_PAINT	- 주 창을 그립니다.
-//  WM_DESTROY	- 종료 메시지를 게시하고 반환합니다.
-//
-//
-LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-	int wmId, wmEvent;
-	PAINTSTRUCT ps;
-	HDC hdc;
+//double(*CALLBACK)(double x)
 
-	switch (message)
-	{
-	case WM_COMMAND:
-		wmId    = LOWORD(wParam);
-		wmEvent = HIWORD(wParam);
-		// 메뉴 선택을 구문 분석합니다.
-		switch (wmId)
-		{
-		case IDM_ABOUT:
-			DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-			break;
-		case IDM_EXIT:
-			DestroyWindow(hWnd);
-			break;
-		default:
-			return DefWindowProc(hWnd, message, wParam, lParam);
-		}
-		break;
-	case WM_PAINT:
-		hdc = BeginPaint(hWnd, &ps);
-		// TODO: 여기에 그리기 코드를 추가합니다.
-		EndPaint(hWnd, &ps);
-		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
-		break;
-	default:
-		return DefWindowProc(hWnd, message, wParam, lParam);
-	}
-	return 0;
+void DrawFunction(HDC hdc,
+    double (*MyFunction)(double x),
+    double begin, double end, COLORREF c, double step = 0.5)
+{
+    double prevx = begin;
+    double prevy = MyFunction(prevx);
+
+    for (double x = begin; x <= end; x += step)
+    {
+        double y = MyFunction(x);
+        DrawLine(hdc, prevx, prevy, x, y, c);
+        prevx = x;
+        prevy = y;
+    }//for
 }
 
-// 정보 대화 상자의 메시지 처리기입니다.
-INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
+void OnPaint(HDC hdc)
 {
-	UNREFERENCED_PARAMETER(lParam);
-	switch (message)
-	{
-	case WM_INITDIALOG:
-		return (INT_PTR)TRUE;
+    DrawLine(hdc, -100, 0, +100, 0, RGB(255, 0, 0));
+    DrawLine(hdc, 0, -100, 0, +100, RGB(0, 255, 0));
+    // draw function Square( f(x) = x^2 ) from -10 to 10 for x
+    DrawFunction(hdc, Square, -20, 20, RGB(0, 0, 255));
+    DrawFunction(hdc, SqureRoot, 0, 40, RGB(255, 0, 255));
+}
 
-	case WM_COMMAND:
-		if (LOWORD(wParam) == IDOK || LOWORD(wParam) == IDCANCEL)
-		{
-			EndDialog(hDlg, LOWORD(wParam));
-			return (INT_PTR)TRUE;
-		}
-		break;
-	}
-	return (INT_PTR)FALSE;
+void DrawLine(HDC hdc, double x1, double y1, double x2, double y2, COLORREF c)
+{
+    HPEN hPen;
+    HPEN hPrevPen;
+    hPen = CreatePen(PS_SOLID, 0, c);
+    hPrevPen = (HPEN)SelectObject(hdc, hPen);
+
+    Transform(&x1, &y1);
+    MoveToEx(hdc, x1, y1, NULL);
+    Transform(&x2, &y2);
+    LineTo(hdc, x2, y2);
+
+    SelectObject(hdc, hPrevPen);
+    DeleteObject(hPen);
+}
+
+void OnSize(HWND hwnd)
+{
+    RECT clientRect;
+    ::GetClientRect(hwnd, &clientRect);
+    const int width = clientRect.right - clientRect.left + 1;
+    const int height = clientRect.bottom - clientRect.top + 1;
+    g_center.x = width / 2;
+    g_center.y = height / 2;
+    g_pixelPerUnit = 10;
+}
+
+void Transform(double* x, double* y)
+{
+    *x = g_center.x + (*x) * g_pixelPerUnit;
+    *y = g_center.y + -(*y) * g_pixelPerUnit;
 }

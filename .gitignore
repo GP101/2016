@@ -31,3 +31,6 @@ ConsoleTetris/ConsoleTetris/Debug/ConsoleTetris.obj
 /CppUnderstanding/CppOcw/Debug
 /CppUnderstanding/Debug
 /CppUnderstanding/CppOcw/*.user
+/Win32Test/Debug
+/Win32Test/Win32Test/Debug
+/Win32Test/.vs

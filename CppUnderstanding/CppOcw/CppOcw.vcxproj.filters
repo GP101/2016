@@ -207,6 +207,9 @@
     <ClCompile Include="VisualStudio2017Console thread step06 thread_local.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="CppOcw equality and equivalence.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">
