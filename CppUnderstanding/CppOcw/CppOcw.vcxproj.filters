@@ -210,6 +210,21 @@
     <ClCompile Include="CppOcw equality and equivalence.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="PerfectForwarding_Step02.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectForwarding_Step03.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectForwarding_Step04.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectForwarding_Step05.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PerfectForwarding_Step06.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">

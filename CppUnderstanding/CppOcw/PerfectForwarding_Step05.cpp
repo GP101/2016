@@ -6,36 +6,6 @@
 #include <memory.h>
 #include <utility>
 
-template<class _Ty>
-struct remove_reference
-{
-    typedef _Ty type;
-};
-
-template<class _Ty>
-struct remove_reference<_Ty&>
-{
-    typedef _Ty type;
-};
-
-template<class _Ty>
-struct remove_reference<_Ty&&>
-{
-    typedef _Ty type;
-};
-
-template<typename T>
-typename remove_reference<T>::type&& mymove(T&& t)
-{
-    return (typename remove_reference<T>::type&&)t;
-}
-
-class KTest;
-void Test(KTest& t);
-void Test(KTest&& t);
-void Test2(KTest& t);
-void Test2(KTest&& t);
-
 class KTest
 {
 private:
@@ -81,7 +51,7 @@ public:
         return *this;
     }
 
-    KTest& operator=(KTest&& rhs) noexcept// move assignment operator
+    KTest& operator=(KTest&& rhs) noexcept // move assignment operator
     {
         if (this == &rhs)
             return *this;
@@ -112,26 +82,9 @@ public:
     }
 };
 
-void Test(KTest& t)
+void Test(KTest t)
 {
-    printf("l-value Test()\r\n");
-}
-void Test(KTest&& t)
-{
-    printf("r-value Test()\r\n");
-}
-void Test2(KTest& t)
-{
-    printf("l-value Test2()\r\n");
-    Test(t);
-    //Test(std::ref(t));
-}
-void Test2(KTest&& t)
-{
-    printf("r-value Test2()\r\n");
-    Test(t);
-    //Test(mymove(t));
-    //Test(std::move(t));
+    printf("Test()\r\n");
 }
 
 KTest GetTest()
@@ -142,7 +95,5 @@ KTest GetTest()
 
 void main()
 {
-    KTest t;
-    Test2(t);
-    Test2(GetTest());
+    KTest t = GetTest();
 }

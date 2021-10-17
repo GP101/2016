@@ -9,51 +9,51 @@
 class KTest
 {
 private:
-    int*    pData;
+    int* pData;
     int     dataSize;
 public:
     KTest()
     {
         dataSize = 3;
-        pData = new int[ dataSize ];
-        printf( "constructor\r\n" );
+        pData = new int[dataSize];
+        printf("constructor\r\n");
     }
 
-    KTest( const KTest& rhs ) // copy constructor
+    KTest(const KTest& rhs) // copy constructor
     {
         dataSize = rhs.dataSize;
-        pData = new int[ dataSize ];
-        memcpy( pData, rhs.pData, sizeof( int )*dataSize );
-        printf( "copy constructor\r\n" );
+        pData = new int[dataSize];
+        memcpy(pData, rhs.pData, sizeof(int) * dataSize);
+        printf("copy constructor\r\n");
     }
 
-    KTest( KTest&& rhs ) noexcept// move constructor
+    KTest(KTest&& rhs) noexcept// move constructor
     {
         dataSize = rhs.dataSize;
         pData = rhs.pData;
 
         rhs.dataSize = 0;
         rhs.pData = nullptr;
-        printf( "move constructor\r\n" );
+        printf("move constructor\r\n");
     }
 
-    KTest& operator=( const KTest& rhs )
+    KTest& operator=(const KTest& rhs)
     {
-        if( this == &rhs )
+        if (this == &rhs)
             return *this;
 
         Release();
 
         dataSize = rhs.dataSize;
-        pData = new int[ dataSize ];
-        memcpy( pData, rhs.pData, sizeof( int )*dataSize );
-        printf( "operator=()\r\n" );
+        pData = new int[dataSize];
+        memcpy(pData, rhs.pData, sizeof(int) * dataSize);
+        printf("operator=()\r\n");
         return *this;
     }
 
-    KTest& operator=( KTest&& rhs ) noexcept // move assignment operator
+    KTest& operator=(KTest&& rhs) noexcept // move assignment operator
     {
-        if( this == &rhs )
+        if (this == &rhs)
             return *this;
 
         Release();
@@ -64,21 +64,21 @@ public:
         rhs.dataSize = 0;
         rhs.pData = nullptr;
 
-        printf( "move operator=()\r\n" );
+        printf("move operator=()\r\n");
         return *this;
     }
 
     void Release()
     {
         dataSize = 0;
-        if( pData != nullptr )
+        if (pData != nullptr)
             delete[] pData;
         pData = nullptr;
     }
     ~KTest()
     {
         Release();
-        printf( "destructor\r\n" );
+        printf("destructor\r\n");
     }
 };
 
@@ -88,17 +88,18 @@ private:
     KTest t;
 public:
     KContainer() {}
-    KContainer( const KContainer& rhs ) {}
-    KContainer( KContainer&& rhs ) noexcept
+    KContainer(const KContainer& rhs) {}
+    KContainer(KContainer&& rhs) noexcept
     {
-        KTest t = std::move(rhs.t); // call copy constructor
+        KTest t = rhs.t; // call copy constructor
+        //KTest t = std::move(rhs.t); // call move constructor
     }
     ~KContainer() {}
 };
 
-void Test( KTest t )
+void Test(KTest t)
 {
-    printf( "Test()\r\n" );
+    printf("Test()\r\n");
 }
 
 KTest GetTest()

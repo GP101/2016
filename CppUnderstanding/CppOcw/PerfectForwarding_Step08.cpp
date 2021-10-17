@@ -34,7 +34,7 @@ public:
         printf( "copy constructor\r\n" );
     }
 
-    KTest( KTest&& rhs ) // move constructor
+    KTest( KTest&& rhs ) noexcept// move constructor
     {
         dataSize = rhs.dataSize;
         pData = rhs.pData;
@@ -58,7 +58,7 @@ public:
         return *this;
     }
 
-    KTest& operator=( KTest&& rhs ) // move assignment operator
+    KTest& operator=( KTest&& rhs ) noexcept// move assignment operator
     {
         if( this == &rhs )
             return *this;
@@ -96,7 +96,7 @@ private:
 public:
     KContainer() {}
     KContainer( const KContainer& rhs ) {}
-    KContainer( KContainer&& rhs )
+    KContainer( KContainer&& rhs ) noexcept
     {
         //KTest t = std::move(rhs.t); // call copy constructor
         //Test((KTest&&)rhs.t);
