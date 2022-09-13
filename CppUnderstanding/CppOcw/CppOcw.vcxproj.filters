@@ -225,6 +225,36 @@
     <ClCompile Include="PerfectForwarding_Step06.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="CppOcw copy constructor01 crash.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw copy constructor02 crash solution.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_01_for_statement.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_02_FOREACH_prepare.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_03_FOREACH_prepare2.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_04_FOREACH.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_05_range-for.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="4_06_custom class for range-for.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="407_rebind.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_containerAndIterator3_algorithm.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">
