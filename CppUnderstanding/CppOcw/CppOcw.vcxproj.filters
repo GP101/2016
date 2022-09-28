@@ -255,6 +255,15 @@
     <ClCompile Include="CppOcw_containerAndIterator3_algorithm.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleApplication1_Day03_smartPointer01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplication1_Day03_smartPointer02.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplication1_Day03_smartPointer03.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">
