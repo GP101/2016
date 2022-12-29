@@ -3,8 +3,8 @@
 #include <functional> // bind2nd
 #include <algorithm> // count_if, less
 
-using std::placeholders::_1;
-using std::placeholders::_2;
+using namespace std::placeholders;// ::_1;
+//using std::placeholders::_2;
 
 void main()
 {

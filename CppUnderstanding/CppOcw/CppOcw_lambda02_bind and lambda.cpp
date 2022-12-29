@@ -60,7 +60,7 @@ bool less2( int i )
 //    return binder2nd<P>( pred_, right_ );
 //}//bind2nd()
 
-using std::placeholders::_1;
+using namespace std::placeholders;// ::_1;
 
 void main()
 {

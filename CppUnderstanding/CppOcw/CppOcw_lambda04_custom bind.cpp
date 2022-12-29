@@ -72,8 +72,8 @@ public:
     }
 };//class KTest
 
-using std::placeholders::_1;
-using std::placeholders::_2;
+using namespace std::placeholders;// ::_1;
+//using std::placeholders::_2;
 
 void main()
 {
