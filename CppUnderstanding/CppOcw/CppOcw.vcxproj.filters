@@ -264,6 +264,12 @@
     <ClCompile Include="ConsoleApplication1_Day03_smartPointer03.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleApplication user defined literal01.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KQuaternion.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">
@@ -273,6 +279,9 @@
       <Filter>Reference Files</Filter>
     </ClInclude>
     <ClInclude Include="KGlobalSingletonNotGood.h">
+      <Filter>Reference Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KQuaternion.h">
       <Filter>Reference Files</Filter>
     </ClInclude>
   </ItemGroup>
