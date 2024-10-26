@@ -270,6 +270,60 @@
     <ClCompile Include="KQuaternion.cpp">
       <Filter>Reference Files</Filter>
     </ClCompile>
+    <ClCompile Include="ConsoleApplication user defined literal02_quaternion.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConsoleApplication user defined literal03_binary literal.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step02-2 guard.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step02-3 synchronized.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread-CriticalSection answer.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread-CriticalSection question.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step05-2 condition variable.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_FunctionObjectAndLambda.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step03-2 atomic.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw deadlock question.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw std_list.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw thread question.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_find_if.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_reinterpret_cast.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step06 thread_local2.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VisualStudio2017Console thread step06 thread_local3.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CppOcw_operatoroverloading02-2 manipulator.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ElementaryFunctions_EulersIdentity.cpp">
+      <Filter>Reference Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="KBaseSingleton.h">

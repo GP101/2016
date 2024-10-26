@@ -1,85 +1,96 @@
 #include <stdio.h>
 #include <string.h>
+#include <iostream>
 
 template<typename T, int SIZE = 100>
 class KStack
 {
 public:
-    KStack() : sp( 0 ) {}
-    void Push( T d )
-    {
-        data[ sp ] = d;
+    KStack() : sp(0) {}
+    void push(T d) {
+        data[sp] = d;
         ++sp;
     }
-    bool Pop( T& d );
-    bool IsEmpty() const
-    {
+    bool pop(T& d);
+    T& top() {
+        return data[sp - 1];
+    }
+
+    bool empty() const {
         return sp == 0;
     }
 private:
     int     sp;
-    T       data[ SIZE ];
+    T       data[SIZE];
 };//KStack
 
 template<typename T, int SIZE>
-bool KStack<T,SIZE>::Pop( T& d )
+bool KStack<T, SIZE>::pop(T& d)
 {
-    if( sp == 0 )
+    if (sp == 0)
         return false;
 
     --sp;
-    d = data[ sp ]; // set [out] parameter
+    d = data[sp]; // set [out] parameter
     return true;
 }
 
 template<int SIZE>
-class KStack<char*,SIZE>
+class KStack<const char*, SIZE>
 {
 public:
-    KStack() : sp( 0 ) {}
-    void Push( char* d )
+    KStack() : sp(0) {}
+    void push(const char* d)
     {
-        strcpy( data[ sp ], d );
+        strncpy_s(data[sp], d, 20);
         ++sp;
     }
-    bool Pop( char*& d );
-    const char* Top() const
+    bool pop(char*& d);
+    const char* top() const
     {
-        return data[ sp - 1 ];
+        return data[sp - 1];
     }
-    bool IsEmpty() const
+    bool empty() const
     {
         return sp == 0;
     }
 private:
     int     sp;
-    char    data[ SIZE ][20];
+    char    data[SIZE][20];
 };//KStack
 
 template<int SIZE>
-bool KStack<char*, SIZE>::Pop( char*& d )
+bool KStack<const char*, SIZE>::pop(char*& d)
 {
-    if( sp == 0 )
+    if (sp == 0)
         return false;
 
     --sp;
-    d = data[ sp ]; // set [out] parameter
+    d = data[sp]; // set [out] parameter
     return true;
 }
 
 void main()
 {
-    KStack<int,10>      s;
+    KStack<int, 10> s;
     KStack<float>   s2;
 
-    s.Push( 3 );
-    s.Push( 5 );
-    int i = 0;
-    s.Pop( i );
-    printf( "%i\r\n", i );
+    s.push(3);
+    s.push(5);
+    while (!s.empty())
+    {
+        int i;
+        s.pop(i);
+        std::cout << i << std::endl;
+    }
 
-    KStack<char*>   s3;
-    s3.Push( "hello" );
-    s3.Push( "world" );
-    printf( "%s\r\n", s3.Top() );
+    KStack<const char*>   s3;
+    s3.push("hello");
+    s3.push("world");
+    while (!s3.empty())
+    {
+        char* t;
+        s3.pop(t);
+        std::cout << t << std::endl;
+    }
 }//main()

@@ -1,34 +1,35 @@
 #include <stdio.h>
 
-void endl()
+class ostream;
+void endl(ostream& stream)
 {
-    printf( "\r\n" );
+    printf("\r\n");
 }
 
 class ostream
 {
 public:
-    const ostream& operator<<( int i ) const
+    ostream& operator<<(int i)
     {
-        printf( "%i", i );
+        printf("%i", i);
         return *this;
     }
 
-    const ostream& operator<<( float f ) const
+    ostream& operator<<(float f)
     {
-        printf( "%g", f );
+        printf("%g", f);
         return *this;
     }
 
-    const ostream& operator<<( const char* s ) const
+    ostream& operator<<(const char* s)
     {
-        printf( "%s", s );
+        printf("%s", s);
         return *this;
     }
 
-    const ostream& operator<<( void( *manipulator )( ) ) const
+    ostream& operator<<(void(*manipulator)(ostream&))
     {
-        manipulator();
+        manipulator(*this);
         return *this;
     }
 
@@ -50,4 +51,3 @@ void main()
     //cout.operator<<( i ).operator<<( f ).operator<<( "hello" ); // explicit call
     cout << i << " " << f << " " << "hello" << endl;
 }
- 
