@@ -1,24 +1,62 @@
 #include <stdio.h>
-#include <vector>
-#include "KGlobalSingletonNotGood.h"
+#include <string.h>
 
-class KTest : public KGlobalSingleton<KTest>
+
+//namespace mtstd
+//{
+//}
+
+class string
 {
+    friend string operator+(const char* left, const string& right);
+
 public:
-    KTest()
+    string(const char* s = nullptr)
     {
-        printf( "%s\r\n", __FUNCTION__ );
+        if (s == nullptr)
+            buffer[0] = NULL;
+        else
+            strcpy_s(buffer, 100, s);
     }
-    void Print() const
+
+    const char* c_str() const
     {
-        printf( "%s\r\n", __FUNCTION__ );
+        return buffer;
     }
+
+    string operator+(const char* right) // operator overloading
+    {
+        string temp = *this;
+        strcat_s(temp.buffer, right);
+        return temp;
+    }
+
+    string& operator=(const string& rhs)
+    {
+        memcpy(buffer, rhs.buffer, sizeof(buffer));
+        return *this;
+    }
+
+private:
+    char    buffer[100];
 };
 
-#define _KTest  KTest::Singleton()
+string operator+(const char* left, const string& right)
+{
+    string t = left;
+    strcat_s(t.buffer, right.buffer);
+    return t;
+}
 
 void main()
 {
-    printf( "hello\r\n" );
-    _KTest.Print();
+    string s = "hello"; // implicit constructor
+    //s = s.operator+( " world" ).operator+( "!\r\n" ); // explicit call
+    s = s + " world" + "!\r\n"; // implicit call
+    printf("%s\r\n", s.c_str());
+
+    string t;
+    t = "hello" + s;
+    //t.operator=( operator+( "hello", s ) )
+    printf("%s\r\n", t.c_str());
 }
